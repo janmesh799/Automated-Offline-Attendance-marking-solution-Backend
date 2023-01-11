@@ -8,7 +8,7 @@ const parseCSVfile = require('../controller/parseCSVfile');
 // const parseCSVfile = require('../controller/parseCSVfile');
 
 
-const upload = multer({ dest: "temp/csv" })
+const upload = multer({ dest: "/temp" })
 const router = express.Router();
 
 router.post('/', upload.single('file'), async function (req, res) {
