@@ -9,7 +9,7 @@ const addBulkStudents = require('./Course/addBulkStudents');
 
 
 
-const upload = multer({ dest: "temp/csv" })
+const upload = multer({ dest: "/temp" })
 const router = express.Router();
 
 // @route POST api/course/createCourse
