@@ -2,14 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const connectToMongo = require('./Database/Db');
 
-const http = require('http');
 const fs = require('fs');
 
-const multer = require('multer');
+// const multer = require('multer');
 const csv = require('fast-csv');
 
 
-const upload = multer({ dest: "temp/csv" })
+// const upload = multer({ dest: "temp/csv" })
 
 const app = express();
 const port = process.env.PORT || 5000;

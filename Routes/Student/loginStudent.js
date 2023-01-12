@@ -24,7 +24,7 @@ const loginStudent = async (req, res) => {
 
                 res.status(200).json({ success: true, authToken });
             } else {
-                res.status(400).json({ success: true, message: "Invalid credentials" });
+                res.status(400).json({ success: false, message: "Invalid credentials" });
             }
         }
         else {
