@@ -27,6 +27,6 @@ app.use('/api/student', require('./Routes/Student'));
 
 app.use('/api/course', require('./Routes/Course'))
 
-app.use('/upload_csv', require('./Routes/upload'));
+// app.use('/upload_csv', require('./Routes/upload'));
 
 app.listen(port, () => console.log(`Server running on port ${port} with url http://localhost:${port}`));
