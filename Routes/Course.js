@@ -28,5 +28,5 @@ router.get('/getcourses', fetchUser, getCourses);
 
 router.get('/getcoursedetails/:id', fetchUser, getCourseDetails);
 
-// router.post('/addBulkStudents/:id', upload.single('file'), fetchUser, addBulkStudents);
+router.post('/addBulkStudents/:id', upload.single('file'), fetchUser, addBulkStudents);
 module.exports = router;
