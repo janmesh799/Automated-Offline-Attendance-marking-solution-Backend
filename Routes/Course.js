@@ -5,11 +5,11 @@ const editCourse = require('./Course/editCourse')
 const fetchUser = require('../Middleware/fetchUser');
 const getCourses = require('./Course/getCourses');
 const getCourseDetails = require('./Course/getCourseDetails');
-const addBulkStudents = require('./Course/addBulkStudents');
+// const addBulkStudents = require('./Course/addBulkStudents');
 
 
 
-const upload = multer({ dest: 'tmp/csv/' });
+// const upload = multer({ dest: 'tmp/csv/' });
 const router = express.Router();
 
 // @route POST api/course/createCourse
@@ -28,5 +28,5 @@ router.get('/getcourses', fetchUser, getCourses);
 
 router.get('/getcoursedetails/:id', fetchUser, getCourseDetails);
 
-router.post('/addBulkStudents/:id', upload.single('file'), fetchUser, addBulkStudents);
+// router.post('/addBulkStudents/:id', upload.single('file'), fetchUser, addBulkStudents);
 module.exports = router;
