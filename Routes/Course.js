@@ -5,6 +5,7 @@ const editCourse = require('./Course/editCourse')
 const fetchUser = require('../Middleware/fetchUser');
 const getCourses = require('./Course/getCourses');
 const getCourseDetails = require('./Course/getCourseDetails');
+const deleteCourse = require('./Course/deleteCourse');
 // const addBulkStudents = require('./Course/addBulkStudents');
 
 
@@ -25,6 +26,7 @@ router.put('/editCourse', fetchUser, editCourse);
 
 router.get('/getcourses', fetchUser, getCourses);
 
+router.delete('/deleteCourse/:id', fetchUser, deleteCourse);
 
 router.get('/getcoursedetails/:id', fetchUser, getCourseDetails);
 
