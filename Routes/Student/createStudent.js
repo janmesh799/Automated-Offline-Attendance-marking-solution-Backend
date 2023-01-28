@@ -13,8 +13,9 @@ const createStudent = async (req, res) => {
         }
         let { name, email, password, batch, branch, rollno, deviceType } = req.body;
         email = email.toLowerCase();
-        const ifStudentexist = Student.find({ email });
-        if (ifStudentexist) {
+        const ifStudentexist = await Student.find({ email });
+        console.log(ifStudentexist);
+        if (ifStudentexist.length) {
             return res.json({ success: false, message: "An student already exists with the same email" });
         }
         const secPass = bcrypt.hashSync(password, 10);
