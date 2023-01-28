@@ -50,11 +50,13 @@ const addStudent = async (email, id) => {
         }
         course.enrolledStudents.push(newStudent);
         await course.save();
+        student.courses.push(course);
+        await student.save();
         return newStudent;
 
 
     } catch (err) {
-        console.log(err.message)
+        console.log({ error: err.message })
     }
 }
 
