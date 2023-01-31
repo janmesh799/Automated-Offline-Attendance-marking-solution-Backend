@@ -26,5 +26,5 @@ router.post("/login", body('email').isEmail(), loginStudent);
 //data {name, email, username, batch, branch, rollno,UUId,bluetooth}
 router.put("/editStudent",fetchUser, editStudent);
 
-router.get('/getStudentDetails/:email',param('email').isEmail(),getStudetnDetails);
+router.get('/getStudentDetails/:email',param('email').isEmail(),fetchUser, getStudetnDetails);
 module.exports = router;
