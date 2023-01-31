@@ -1,9 +1,10 @@
 const express = require('express');
-const { body } = require('express-validator')
+const { body,param } = require('express-validator')
 const createStudent = require('./Student/createStudent');
 const loginStudent = require('./Student/loginStudent');
 const editStudent = require('./Student/editStudent');
 const fetchUser = require('../Middleware/fetchUser');
+const getStudetnDetails = require('./Student/getStudentDetails');
 
 const router = express.Router();
 
@@ -25,5 +26,5 @@ router.post("/login", body('email').isEmail(), loginStudent);
 //data {name, email, username, batch, branch, rollno,UUId,bluetooth}
 router.put("/editStudent",fetchUser, editStudent);
 
-
+router.get('/getStudentDetails/:email',param('email').isEmail(),getStudetnDetails);
 module.exports = router;

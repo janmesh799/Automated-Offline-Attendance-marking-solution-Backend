@@ -1,11 +1,16 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { validationResult } = require('express-validator')
 const Student = require('../../Models/StudentSchema.js');
 
 const secretKey = process.env.SECRET_KEY;
 
 const loginStudent = async (req, res) => {
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ success: false, errors: errors.array() })
+        }
         let { email, password,deviceType } = req.body;
         email = email.toLowerCase();
         const student = await Student.findOne({ email }).select('+password');
