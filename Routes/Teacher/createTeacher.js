@@ -14,20 +14,21 @@ const createTeacher = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
     try {
-        let { name, email, password, description,deviceType } = req.body;
+        let { name, email, password, description, deviceType } = req.body;
         email = email.toLowerCase();
         const secPassword = bcrypt.hashSync(password, 10);
         const teacher = new Teacher({
             name,
             email,
-            password: secPassword,
+            // password: secPassword,
+            password,
             description,
         });
         await teacher.save()
             .then(teacher => {
-                const user = { id: teacher.id, userType: teacher.userType,deviceType }
+                const user = { id: teacher.id, userType: teacher.userType, deviceType }
                 const token = jwt.sign(user, secretKey);
-                res.json({ success: true, authToken: token});
+                res.json({ success: true, authToken: token });
             }
             )
             .catch(err => {
