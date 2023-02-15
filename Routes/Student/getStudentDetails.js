@@ -6,7 +6,8 @@ const getStudetnDetails = async (req, res) => {
         if (!errors.isEmpty()) {
             return res.status(400).json({ success: false, errors: errors.array() })
         }
-        const { email } = req.params;
+        let { email } = req.params;
+        email = email.toLowerCase();
         const student = await Student.findOne({ email });
         if (!student) {
             return res.status(404).json({ success: false, message: "Student not found" });
