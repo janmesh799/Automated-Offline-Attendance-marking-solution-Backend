@@ -33,7 +33,7 @@ const loginStudent = async (req, res) => {
             }
         }
         else {
-            res.status(400).json({ success: true, msg: "Invalid credentials" });
+            res.status(400).json({ success: false, msg: "Invalid credentials" });
         }
     }
     catch (err) {
