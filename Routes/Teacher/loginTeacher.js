@@ -26,7 +26,8 @@ const loginTeacher = async (req, res) => {
         }
         const user = { id: teacher.id, userType: teacher.userType, deviceType }
         const token = jwt.sign(user, secretKey);
-        res.json({ success: true, authToken: token,teacher });
+        const loggedInTeacher = { id: teacher.id, name: teacher.name, userType: teacher.userType, email: teacher.email, description: teacher.description, courses: teacher.courses };
+        res.json({ success: true, authToken: token, loggedInTeacher });
     } catch (err) {
         res.json({ success: false, message: err.message });
     }
