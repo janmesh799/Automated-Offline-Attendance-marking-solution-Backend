@@ -6,6 +6,7 @@ const loginTeacher = require('./Teacher/loginTeacher');
 const findTeacher = require('./Teacher/findTeacher');
 const editTeacher = require('./Teacher/editTeacher');
 const forgotPasswordTeacher = require('./Teacher/forgotPasswordTeacher');
+const fetchTeacherbyAuthToken = require('./Teacher/fetchTeacher');
 const router = express.Router();
 
 //@route POST api/teacher/createTeacher
@@ -25,6 +26,8 @@ router.post('/login', body('email').isEmail(), loginTeacher);
 //@access logged in users only
 //params {email}
 router.get('/findTeacher/:email', fetchUser, findTeacher);
+
+router.get('/fetchTeacherbyAuthToken', fetchUser,fetchTeacherbyAuthToken)
 
 //@route GET api/editTeacher
 //@desc Edit the details of a teacher

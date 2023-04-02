@@ -24,7 +24,7 @@ const loginTeacher = async (req, res) => {
         if (!isMatch) {
             return res.json({ success: false, message: 'Please Enter correct Credentials' });
         }
-        const user = { id: teacher.id, userType: teacher.userType, deviceType }
+        const user = { id: teacher._id, userType: teacher.userType, deviceType }
         const token = jwt.sign(user, secretKey);
         const loggedInTeacher = { id: teacher.id, name: teacher.name, userType: teacher.userType, email: teacher.email, description: teacher.description, courses: teacher.courses };
         res.json({ success: true, authToken: token, loggedInTeacher });
