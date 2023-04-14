@@ -1,10 +1,11 @@
 const sendEmail = require("../../controller/sendEmail");
-const Teacher = require("../../Models/TeacherSchema")
+const Student = require('../../Models/StudentSchema')
 const jwt = require("jsonwebtoken");
 const { validationResult } = require('express-validator')
 const secretKey = process.env.SECRET_KEY;
 
-const forgotPasswordTeacher = async (req, res) => {
+
+const forgotPasswordStudent = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -15,22 +16,21 @@ const forgotPasswordTeacher = async (req, res) => {
         else {
             res.status(400).json({ success: false, token: "not a valid email" })
         }
-        const teacher = await Teacher.findOne({ email });
-        if (!teacher) {
-            return res.status(400).json({ success: false, message: "No Teacher Found with this email" });
+        const student = await Student.findOne({ email });
+        if (!student) {
+            return res.status(400).json({ success: false, message: "No Student Found with this email" });
         }
         const user = {
-            id: teacher.id,
+            id: student.id,
             email: email
         }
         const token = jwt.sign(user, secretKey, { expiresIn: 3600 });
-        await Teacher.findByIdAndUpdate(teacher.id, { forgotPasswordToken: token });
-        sendEmail(email, token,"teacher");
-        res.json({ success: true, message: "Forgot Password mail sent successfull"});
+        await Student.findByIdAndUpdate(student.id, { forgotPasswordToken: token });
+        sendEmail(email, token, "student");
+        res.json({ success: true, message: "Forgot Password mail sent successfull" });
 
     } catch (err) {
-        return res.status(500).json({ success: false, message: "Internal Server Error", error: err.message })
+        res.status(500).json({ success: false, message: "Internal Server error", error: err.message })
     }
 }
-
-module.exports = forgotPasswordTeacher;
+module.exports = forgotPasswordStudent
