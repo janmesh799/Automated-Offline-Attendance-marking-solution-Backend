@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const sendEmail = (emailId, token) => {
+const sendEmail = (emailId, token,userType) => {
 
     const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
@@ -11,20 +11,27 @@ const sendEmail = (emailId, token) => {
             pass: process.env.EMAIL_PASS
         }
     });
+    let api = "";
+    if(userType === 'teacher'){
+        api  = "api/teacher/resetforgotpassword/"
+    }
+    else if(userType === 'student'){
+        api =  "api/student/resetforgotpassword/"
+    }
     const message = `
     <body>
     <div>
-        <h3>Password Resetting Link for your account at InAttend</h3>
+        <h3>Password Resetting Link for your account at Upasthit</h3>
         </br>
         <div>
             <p>
-                please <a href="https://www.Inattend.com/${token}"> click here </a> to reset your password or click
+                please <a href=${process.env.HOST}${api}${token}"> click here </a> to reset your password or click
                 below mentioned link
             </p>
             </br>
             </br>
             <span>
-                https://www.Inattend.com/${token}
+            ${process.env.HOST}${api}${token}
             </span>
         </div>
     </div>

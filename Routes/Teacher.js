@@ -7,6 +7,7 @@ const findTeacher = require('./Teacher/findTeacher');
 const editTeacher = require('./Teacher/editTeacher');
 const forgotPasswordTeacher = require('./Teacher/forgotPasswordTeacher');
 const fetchTeacherbyAuthToken = require('./Teacher/fetchTeacher');
+const resetForgotPasswordTeacher = require('./Teacher/resetForgotPasswordTeacher');
 const router = express.Router();
 
 //@route POST api/teacher/createTeacher
@@ -37,5 +38,6 @@ router.put('/editTeacher', body('email').isEmail(), body('password').isStrongPas
 
 router.post('/forgotPassword', body('email').isEmail(), forgotPasswordTeacher);
 
+router.post('/resetforgotpassword/:forgotToken', body('email').isEmail, body('newPassword').isStrongPassword() ,resetForgotPasswordTeacher)
 
 module.exports = router;

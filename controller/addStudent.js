@@ -29,13 +29,13 @@ const serviceGuid = async () => {
 }
 
 
-const addStudent = async (email, id) => {
+const addStudent = async (email, courseId) => {
     try {
         const student = await Student.findOne({ email });
         if (!student) {
             return;
         }
-        const course = await Course.findById(id);
+        const course = await Course.findById(courseId);
         for (let i = 0; i < course.enrolledStudents.length; i++) {
             const elem = course.enrolledStudents[i];
             if (elem.studentId.toHexString() === student._id.toHexString()) return;
