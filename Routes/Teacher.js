@@ -8,6 +8,7 @@ const editTeacher = require('./Teacher/editTeacher');
 const forgotPasswordTeacher = require('./Teacher/forgotPasswordTeacher');
 const fetchTeacherbyAuthToken = require('./Teacher/fetchTeacher');
 const resetForgotPasswordTeacher = require('./Teacher/resetForgotPasswordTeacher');
+const getTeacherbyId = require('./Teacher/getTeacherbyId');
 const router = express.Router();
 
 //@route POST api/teacher/createTeacher
@@ -28,7 +29,9 @@ router.post('/login', body('email').isEmail(), loginTeacher);
 //params {email}
 router.get('/findTeacher/:email', fetchUser, findTeacher);
 
-router.get('/fetchTeacherbyAuthToken', fetchUser,fetchTeacherbyAuthToken)
+router.get('/fetchTeacherbyAuthToken', fetchUser, fetchTeacherbyAuthToken)
+
+router.get('/getteacherbyid/:id', fetchUser, getTeacherbyId);
 
 //@route GET api/editTeacher
 //@desc Edit the details of a teacher
@@ -38,6 +41,6 @@ router.put('/editTeacher', body('email').isEmail(), body('password').isStrongPas
 
 router.post('/forgotPassword', body('email').isEmail(), forgotPasswordTeacher);
 
-router.post('/resetforgotpassword/:forgotToken', body('email').isEmail, body('newPassword').isStrongPassword() ,resetForgotPasswordTeacher)
+router.post('/resetforgotpassword/:forgotToken', body('email').isEmail, body('newPassword').isStrongPassword(), resetForgotPasswordTeacher)
 
 module.exports = router;
