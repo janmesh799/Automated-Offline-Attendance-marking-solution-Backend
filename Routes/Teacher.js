@@ -36,7 +36,7 @@ router.get('/getteacherbyid/:id', fetchUser, getTeacherbyId);
 //@route GET api/editTeacher
 //@desc Edit the details of a teacher
 //@access Private
-//data {name, email, password, username,course, UUId, bluetooth}
+//data {name, email, password, username,course,  bluetooth}
 router.put('/editTeacher', body('email').isEmail(), body('password').isStrongPassword(), fetchUser, editTeacher);
 
 router.post('/forgotPassword', body('email').isEmail(), forgotPasswordTeacher);

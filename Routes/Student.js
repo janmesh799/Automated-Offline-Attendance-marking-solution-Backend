@@ -6,6 +6,7 @@ const editStudent = require('./Student/editStudent');
 const fetchUser = require('../Middleware/fetchUser');
 const getStudetnDetails = require('./Student/getStudentDetails');
 const forgotPasswordStudent = require('./Student/forgotPasswordStudent');
+const resetForgotPasswordStudent = require('./Student/resetForgotPasswordStudent');
 
 const router = express.Router();
 
@@ -30,4 +31,7 @@ router.put("/editStudent", fetchUser, editStudent);
 router.get('/getStudentDetails/:email', param('email').isEmail(), fetchUser, getStudetnDetails);
 
 router.post('/forgotpassword', body('email').isEmail(), forgotPasswordStudent);
+
+
+router.post('/resetforgotpassword/:forgotToken', body('email').isEmail(), body('newPassword').isStrongPassword() ,resetForgotPasswordStudent)
 module.exports = router;

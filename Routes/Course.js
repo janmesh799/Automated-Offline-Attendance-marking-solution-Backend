@@ -7,6 +7,7 @@ const getCourses = require('./Course/getCourses');
 const getCourseDetails = require('./Course/getCourseDetails');
 const deleteCourse = require('./Course/deleteCourse');
 const addStudents = require('./Course/addStudents');
+const acceptingCourseInvite = require('./Course/acceptingCourseInvite');
 // const addBulkStudents = require('./Course/addBulkStudents');
 
 
@@ -31,7 +32,9 @@ router.delete('/deleteCourse/:id', fetchUser, deleteCourse);
 
 router.get('/getcoursedetails/:id', fetchUser, getCourseDetails);
 
-router.post('/addStudents',fetchUser,addStudents)
+router.post('/addStudents', fetchUser, addStudents)
+
+router.get('/acceptingcourseinvite', fetchUser, acceptingCourseInvite)
 
 // router.post('/addBulkStudents/:id', upload.single('file'), fetchUser, addBulkStudents);
 module.exports = router;

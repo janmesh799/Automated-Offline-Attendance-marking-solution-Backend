@@ -44,7 +44,7 @@ const addStudent = async (email, courseId) => {
         const serviceId = await serviceGuid();
         const newStudent = {
             studentId: student.id,
-            invitationStatus: "Not Sent",
+            invitationStatus: "sent",
             charId: charId,
             serviceId: serviceId
         }
