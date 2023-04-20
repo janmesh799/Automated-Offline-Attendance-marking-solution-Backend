@@ -15,7 +15,7 @@ const isEnrolledFunction = (course, studentId) => {
                 }
             }
         }
-        return ({ success: false,message:"Not found" });
+        return ({ success: false, message: "Not found" });
     } catch (err) {
         return ({ success: false, message: "Error in isEnrolled function", error: err.message });
     }
@@ -30,7 +30,22 @@ const acceptInvite = async (course, studentId) => {
                 return ({ success: true });
             }
         }
-        return ({ success: false, message:"Not found" });
+        return ({ success: false, message: "Not found" });
+
+    } catch (err) {
+        return ({ success: false, message: "Error in acceptInvite function", error: err.message });
+    }
+}
+
+const getServiceId = (course, studentId) => {
+    try {
+        for (let i = 0; i < course.enrolledStudents.length; i++) {
+            let element = course.enrolledStudents[i];
+            if (element.studentId.toString() === studentId) {
+                return { success: true, serviceId: element.serviceId };
+            }
+        }
+        return ({ success: false, message: "Not found" });
 
     } catch (err) {
         return ({ success: false, message: "Error in acceptInvite function", error: err.message });
@@ -57,7 +72,8 @@ const acceptingCourseInvite = async (req, res) => {
         if (isAccepted.success == false) {
             return res.status(403).json({ success: true, message: "Some error in accepting the invite", error: isAccepted.error });
         }
-        return res.status(200).json({ success: true, message: "Course invite accepted successfully" })
+        const serviceId = getServiceId(course, student.id).serviceId;
+        return res.status(200).json({ success: true, message: "Course invite accepted successfully", serviceId: serviceId })
 
     } catch (err) {
         return res.status(500).json({ success: false, message: "Internal Server Error", error: err.message })
