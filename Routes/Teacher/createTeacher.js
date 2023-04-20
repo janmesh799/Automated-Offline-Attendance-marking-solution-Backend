@@ -20,8 +20,7 @@ const createTeacher = async (req, res) => {
         const teacher = new Teacher({
             name,
             email,
-            // password: secPassword,
-            password,
+            password: secPassword,
             description,
         });
         await teacher.save()
